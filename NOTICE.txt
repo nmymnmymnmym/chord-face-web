@@ -1,0 +1,19 @@
+# 外部要素
+
+公開HTMLには、調査文書の本文、外部JavaScriptライブラリ、写真、音声サンプルを同梱しません。顔と音は計算で生成します。
+
+## 描画の階調曲線
+
+`visual/head.js` の階調変換は、Krzysztof Narkowicz の ACES Filmic Tone Mapping Curve の近似係数を使います。元の短い関数は著者が CC0 または MIT として提供しています。この実装では CC0 を選び、単一の輝度値へ適用し、白の基準で正規化しています。
+
+出典: https://knarkowicz.wordpress.com/2016/01/06/aces-filmic-tone-mapping-curve/
+
+## フォント
+
+IBM Plex Mono、Libre Caslon Display、Noto Music を Google Fonts から読み込みます。フォントファイルはこの配布物に同梱しません。
+
+## ビルド用依存
+
+Terser（BSD-2-Clause）とその依存を、コードの構文解析と公開用HTMLの生成に使います。これらのライブラリ自体は公開HTMLへ組み込みません。依存の版と整合性ハッシュは `package-lock.json` に記録します。
+
+この文書は外部要素の出典と扱いを示すもので、アプリ全体へ新しいオープンソースライセンスを付与するものではありません。
