@@ -1,6 +1,16 @@
 # 外部要素
 
-公開HTMLには、調査文書の本文、外部JavaScriptライブラリ、写真、音声サンプルを同梱しません。顔と音は計算で生成します。
+公開HTMLに調査文書の本文や写真は同梱しません。顔は計算で生成し、ピアノの発音には以下の既存ライブラリを組み込みます。
+
+## ピアノ音源
+
+smplr 1.1.0（著者 danigb、MIT）に含まれる SplendidGrandPiano を使います。サンプル選択・発音・音の解放はこのライブラリが行います。使用しない楽器をビルド時に除き、版と整合性ハッシュを package-lock.json に固定します。MIT の説明と許諾文はHTMLのライセンスコメントにも含めます。上流のREADMEとnpmメタデータにMITの宣言がありますが、上流配布物に独立したLICENSEファイルはないため、標準のMIT許諾文と著者名を adapters/web/licenses/smplr.txt に記録します。
+
+出典: https://github.com/danigb/smplr
+
+音声は Splendid Grand Piano の公開サンプルを、smpldsnds.github.io/sfzinstruments-splendid-grand-piano/samples/ から読み込みます。元のSteinway録音は提供元の説明でパブリックドメインです。5つの音域と全打鍵強度をライブラリの設定で選び、Chromeでは20ファイル・1,783,654バイトを読み込みます。音声ファイル自体を公開HTMLに同梱せず、このディレクトリへの通信だけをCSPで許可します。
+
+出典: https://sfzinstruments.github.io/pianos/splendid_grand_piano/ 、https://github.com/smpldsnds/sfzinstruments-splendid-grand-piano
 
 ## 描画の階調曲線
 
@@ -14,6 +24,6 @@ IBM Plex Mono、Libre Caslon Display、Noto Music を Google Fonts から読み�
 
 ## ビルド用依存
 
-Terser（BSD-2-Clause）とその依存を、コードの構文解析と公開用HTMLの生成に使います。これらのライブラリ自体は公開HTMLへ組み込みません。依存の版と整合性ハッシュは `package-lock.json` に記録します。
+Terser（BSD-2-Clause）、esbuild（MIT）とその依存を、コードの構文解析と公開用HTMLの生成に使います。これらのライブラリ自体は公開HTMLへ組み込みません。依存の版と整合性ハッシュは `package-lock.json` に記録します。
 
 この文書は外部要素の出典と扱いを示すもので、アプリ全体へ新しいオープンソースライセンスを付与するものではありません。
